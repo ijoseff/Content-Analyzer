@@ -2,3 +2,4 @@ streamlit==0.72.0
 pandas==1.1.2
 spacy==2.3.2
 base58==2.0.1
+numpy==1.18.5
