@@ -1,8 +1,14 @@
 # Import
 import streamlit as st
+from PIL import Image
 import pandas as pd
 import spacy
 import base64
+
+
+
+image = Image.open('photo1.png')
+st.image(image, caption = ' ', use_column_width = True)
 
 st.title("NLP Content Analyzer")
 st.header('This application extracts entity and its frequency in the contents 🕵🏻‍♂️')
@@ -32,20 +38,17 @@ if uploaded_file is not None:
         for j in list[i]:
             entities.append(j)
     
-    entity = []
-    count = []
-
-
-    freq = {}
-
+    freq = {} 
     for j in entities: 
         if (str(j) in freq): 
             freq[str(j)] += 1
         else: 
             freq[str(j)] = 1
+            
+    def getList(dict):  
+        return [*dict] 
 
-    for key, value in freq.items():
-        entity.append(key), count.append(value)
+    entity = getList(freq)
 
     
     output = pd.DataFrame(columns = ['Name', 'Frequency'])
@@ -62,8 +65,8 @@ if uploaded_file is not None:
     output['Frequency'] = frequency
     output = output.sort_values(by='Frequency', ascending=False, ignore_index = True)
 
-    st.sidebar.header('Result:')
-    st.sidebar.write(output)
+    st.subheader('Result:')
+    st.write(output)
 
 
     def download_link(object_to_download, download_filename, download_link_text):
@@ -77,9 +80,9 @@ if uploaded_file is not None:
         return f'<a href="data:file/txt;base64,{b64}" download="{download_filename}">{download_link_text}</a>'
 
 
-    if st.sidebar.button('Generate CSV File Download Link'):
+    if st.button('Generate CSV File Download Link'):
         tmp_download_link = download_link(output, 'Entity - Frequency.csv', 'Click here to download your data!')
-        st.sidebar.markdown(tmp_download_link, unsafe_allow_html=True)
+        st.markdown(tmp_download_link, unsafe_allow_html=True)
 
 
 else:
