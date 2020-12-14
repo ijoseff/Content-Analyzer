@@ -1,6 +1,7 @@
 # Import
 import streamlit as st
 from PIL import Image
+import re
 import pandas as pd
 import spacy
 import base64
@@ -21,6 +22,9 @@ uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
     contents = df['Content']
+    
+    # Remove punctuation
+    contents = contents.map(lambda x: re.sub('[,@#©\.!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~!?]','', x))
 
     label = 'PERSON'
 
