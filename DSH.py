@@ -26,8 +26,6 @@ if uploaded_file is not None:
     # Remove punctuation
     contents = contents.map(lambda x: re.sub('[,@#©\.!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~!?]','', x))
 
-    label = 'PERSON'
-
     nlp = spacy.load('en_core_web_sm-2.3.1')
 
     list = ['']
