@@ -1,29 +1,29 @@
 # Import
 import streamlit as st
 from PIL import Image
-import re
 import pandas as pd
 import spacy
 import base64
-
+import re
 
 
 image = Image.open('photo1.png')
 st.image(image, caption = ' ', use_column_width = True)
 
 st.title("NLP Content Analyzer")
-st.header('This application extracts entity and its frequency in the contents 🕵🏻‍♂️')
+st.header('This application extracts entity and its frequency in the contents 🕵')
 
-type = st.selectbox('Select Named Entity Type',['PERSON - People, including fictional.', 'NORP - Nationalities or religious or political groups.', 'FAC - Buildings, airports, highways, bridges, etc.', 'ORG - Companies, agencies, institutions, etc.', 'GPE - Countries, cities, states.', 'LOC - Non-GPE locations, mountain ranges, bodies of water.', 'PRODUCT - Objects, vehicles, foods, etc. (Not services.)', 'EVENT - Named hurricanes, battles, wars, sports events, etc.', 'WORK OF ART - Titles of books, songs, etc.', 'LAW - Named documents made into laws.', 'LANGUAGE - Any named language.', 'DATE - Absolute or relative dates or periods.', 'TIME - Times smaller than a day.', 'PERCENT - Percentage, including %', 'MONEY - Monetary values, including unit.', 'QUANTITY - Measurements, as of weight or distance.', 'ORDINAL - first, second, etc.', 'CARDINAL - Numerals that do not fall under another type.'])
+type = st.selectbox('Select Named Entity Type',['PERSON', 'NORP', 'FAC', 'ORG', 'GPE', 'LOC', 'PRODUCT', 'EVENT', 'WORK_OF_ART', 'LAW', 'LANGUAGE', 'DATE', 'TIME', 'PERCENT', 'MONEY', 'QUANTITY', 'ORDINAL', 'CARDINAL'])
+st.write('Description: ', spacy.explain(type))
 
 # Collects user input features into dataframe
 uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
     contents = df['Content']
-    
+
     # Remove punctuation
-    contents = contents.map(lambda x: re.sub('[,@#©\.!"#%\'()*+,./:;<=>?@[\\]^_`{|}~!?]','', x))
+    contents = contents.map(lambda x: re.sub('[,@#©\.!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~!?]','', x))
 
     nlp = spacy.load('en_core_web_sm-2.3.1')
 
