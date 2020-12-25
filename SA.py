@@ -12,7 +12,7 @@ def app():
     st.image(image, caption = ' ', use_column_width = True)
 
     st.title("Sentiment Analysis")
-    st.header('Analyze positive, neutral and negative statement from the contents.')
+    st.header('Analyze positive, neutral and negative statements in the content.')
 
     # Collects user input features into dataframe
     uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
