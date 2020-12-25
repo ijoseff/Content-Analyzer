@@ -3,10 +3,11 @@ import NER
 import TP
 import WC
 import TS
+import SA
 import streamlit as st
 from PIL import Image
 
-PAGES = {'Named Enity Recognition': NER, 'Topic Modeling': TP, 'Word Cloud Generation': WC, 'Text Summarization': TS}
+PAGES = {'Named Enity Recognition': NER, 'Topic Modeling': TP, 'Word Cloud Generation': WC, 'Text Summarization': TS, 'Sentiment Analysis': SA}
 
 image = Image.open('photo1.png')
 st.sidebar.image(image, caption = ' ', use_column_width = True)
@@ -16,5 +17,3 @@ selection = st.sidebar.radio("Go to", list(PAGES.keys()))
 page = PAGES[selection]
 
 page.app()
-
-
