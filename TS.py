@@ -10,5 +10,5 @@ def app():
     image = Image.open('photo1.png')
     st.image(image, caption = ' ', use_column_width = True)
 
-    st.title("Topic Modeling")
-    st.header('This searches group of words (i.e topic) from a collection of documents that best represents the information in the collection.')
+    st.title("Text Summarization")
+    st.header('Generate summary from all the texts in the contents.')
