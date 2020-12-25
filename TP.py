@@ -11,7 +11,7 @@ def app():
     st.image(image, caption = ' ', use_column_width = True)
 
     st.title("Topic Modeling")
-    st.header('Searches group of words (i.e topic) in the contents.')
+    st.header('Searches group of words (i.e topic) in the content.')
 
     # Collects user input features into dataframe
     uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
