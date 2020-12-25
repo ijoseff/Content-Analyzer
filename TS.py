@@ -11,7 +11,7 @@ def app():
     st.image(image, caption = ' ', use_column_width = True)
 
     st.title("Text Summarization")
-    st.header('Generate summary from all the texts in the contents.')
+    st.header('Generate summary from all the texts in the content.')
     
     # Collects user input features into dataframe
     uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
