@@ -12,7 +12,7 @@ def app():
     st.image(image, caption = ' ', use_column_width = True)
 
     st.title("Word Cloud Generation")
-    st.header('Create a collection, or cluster, of words depicted in different sizes.')
+    st.header('Create a collection, or cluster, of words depicted in different sizes from the contents.')
 
     # Collects user input features into dataframe
     uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
