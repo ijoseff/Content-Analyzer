@@ -18,3 +18,6 @@ def app():
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
         contents = df['Content']
+        
+    else:
+        st.text('')
