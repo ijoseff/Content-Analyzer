@@ -5,3 +5,4 @@ base58==2.0.1
 numpy==1.18.5
 Pillow==7.2.0
 regex==2020.7.14
+wordcloud==1.8.0
