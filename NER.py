@@ -11,7 +11,7 @@ def app():
     image = Image.open('photo1.png')
     st.image(image, caption = ' ', use_column_width = True)
 
-    st.title("Named Entity Recognition")
+    st.title("Named-Entity Recognition")
     st.header('Extracts named-entity and its frequency in the content.')
 
     type = st.selectbox('Select Named Entity Type',['PERSON', 'NORP', 'FAC', 'ORG', 'GPE', 'LOC', 'PRODUCT', 'EVENT', 'WORK_OF_ART', 'LAW', 'LANGUAGE', 'DATE', 'TIME', 'PERCENT', 'MONEY', 'QUANTITY', 'ORDINAL', 'CARDINAL'])
