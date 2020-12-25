@@ -12,7 +12,7 @@ def app():
     st.image(image, caption = ' ', use_column_width = True)
 
     st.title("Named Entity Recognition")
-    st.header('This extracts named-entity and its frequency in the contents.')
+    st.header('Extracts named-entity and its frequency in the contents.')
 
     type = st.selectbox('Select Named Entity Type',['PERSON', 'NORP', 'FAC', 'ORG', 'GPE', 'LOC', 'PRODUCT', 'EVENT', 'WORK_OF_ART', 'LAW', 'LANGUAGE', 'DATE', 'TIME', 'PERCENT', 'MONEY', 'QUANTITY', 'ORDINAL', 'CARDINAL'])
     st.write('Description: ', spacy.explain(type))
