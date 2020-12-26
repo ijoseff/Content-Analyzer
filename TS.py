@@ -12,12 +12,3 @@ def app():
 
     st.title("Text Summarization")
     st.header('Generate summary from all the texts in the content.')
-    
-    # Collects user input features into dataframe
-    uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
-    if uploaded_file is not None:
-        df = pd.read_csv(uploaded_file)
-        contents = df['Content']
-
-    else:
-        st.text('')
