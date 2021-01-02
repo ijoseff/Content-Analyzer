@@ -24,6 +24,6 @@ st.sidebar.title("Contribution")
 st.sidebar.info('This web application is designed to help team of insight analyst in their explanatory data analysis.')
 
 st.sidebar.title("About")
-st.sidebar.warning('This app is maintained by Joseff Tan. You can learn about him or send bug report/suggestion at ijoseff.github.io')
+st.sidebar.warning('This app is created and maintained by Joseff Tan. You can learn more about him and send bug reports or suggestions at [iJoseff.github.io](iJoseff.github.io). ♥')
 
 page.app()
