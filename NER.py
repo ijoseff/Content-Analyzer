@@ -5,6 +5,7 @@ import pandas as pd
 import spacy
 import base64
 import re
+import plotly.express as px
 
 def app():
 
@@ -69,7 +70,17 @@ def app():
         output = output.sort_values(by='Frequency', ascending=False, ignore_index = True)
 
         st.title('Result:')
-        st.title('')
+
+        st.markdown("### Top 10 Entity Mentions")
+        fig = px.bar(output.head(10), x='Name', y='Frequency', color='Frequency', height=500, width = 1000)
+        st.plotly_chart(fig)
+
+        st.write('')
+
+        st.markdown("### Entity Frequency Table")
+
+        st.write('')
+
         st.write(output)
 
         def download_link(object_to_download, download_filename, download_link_text):
