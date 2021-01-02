@@ -7,7 +7,7 @@ import SA
 import streamlit as st
 from PIL import Image
 
-PAGES = {'Named-Entity Recognition': NER, 'Topic Modeling': TP, 'Word Cloud Generation': WC, 'Text Summarization (Soon)': TS, 'Sentiment Analysis (Soon)': SA}
+PAGES = {'Named-Entity Recognition': NER, 'Topic Modeling': TP, 'Word & Phrase Cloud Generation': WC, 'Text Summarization (Soon)': TS, 'Sentiment Analysis (Soon)': SA}
 
 image = Image.open('photo2.png')
 st.sidebar.image(image, caption = ' ', use_column_width = True)
