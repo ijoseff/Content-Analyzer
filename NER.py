@@ -26,6 +26,8 @@ def app():
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
         contents = df['Content']
+        
+        contents = df.dropna()
 
         # Remove punctuation
         contents = contents.map(lambda x: re.sub('[,@#©\.!"#%\'()*+,./:;<=>?@[\\]^_`{|}~!?]','', x))
