@@ -32,8 +32,6 @@ def app():
     uploaded_file = st.file_uploader("Upload your input csv file", type=["csv"])
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file).dropna()
-        
-        contents = df
 
         tfidf = TfidfVectorizer(max_df=0.95, min_df=2, stop_words='english')
 
