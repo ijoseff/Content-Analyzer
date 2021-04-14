@@ -38,9 +38,7 @@ def app():
     # Collects user input features into dataframe
     uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"], dtype={"id": str}, index_col=0)
     if uploaded_file is not None:
-        records = pd.read_csv(uploaded_file)
-        
-        records = records.dropna()
+        records = pd.read_csv(uploaded_file).dropna()
 
         def get_bitrigrams(full_text, threshold=30):
             if isinstance(full_text, str):
