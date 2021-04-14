@@ -24,11 +24,9 @@ def app():
     # Collects user input features into dataframe
     uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
     if uploaded_file is not None:
-        df = pd.read_csv(uploaded_file)
+        df = pd.read_csv(uploaded_file).dropna()
         
-        contents = df.dropna()
-        
-        contents = df['Content']
+        contents = df['Content'].dropna()
 
         # Remove punctuation
         contents = contents.map(lambda x: re.sub('[,@#©\.!"#%\'()*+,./:;<=>?@[\\]^_`{|}~!?]','', x))
