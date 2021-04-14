@@ -31,9 +31,7 @@ def app():
     # Collects user input features into dataframe
     uploaded_file = st.file_uploader("Upload your input csv file", type=["csv"])
     if uploaded_file is not None:
-        df = pd.read_csv(uploaded_file)
-        
-        df = df.dropna()
+        df = pd.read_csv(uploaded_file).dropna()
         
         contents = df
 
