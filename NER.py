@@ -25,9 +25,10 @@ def app():
     uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
-        contents = df['Content']
         
         contents = df.dropna()
+        
+        contents = df['Content']
 
         # Remove punctuation
         contents = contents.map(lambda x: re.sub('[,@#©\.!"#%\'()*+,./:;<=>?@[\\]^_`{|}~!?]','', x))
