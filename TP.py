@@ -16,7 +16,10 @@ def app():
     st.image(image, caption = ' ', use_column_width = True)
 
     st.title("Topic Modeling")
+
     st.header('Searches group of words (i.e topic) in the content.')
+
+    st.markdown('[Download Sample Data](https://drive.google.com/uc?export=download&id=1Wq53CzQ4THFUPQpGYF4rHo6_HhxbH42I) 📥')
 
     st.write('')
 
@@ -31,11 +34,33 @@ def app():
     # Collects user input features into dataframe
     uploaded_file = st.file_uploader("Upload your input csv file", type=["csv"])
     if uploaded_file is not None:
-        df = pd.read_csv(uploaded_file).dropna()
+        df = pd.read_csv(uploaded_file)
+
+        st.write('')
+
+        st.markdown('### Data Table')
+
+        st.write('')
+
+        st.dataframe(df)
+
+        st.write('')
+
+        st.markdown('### Data Description')
+
+        st.write('')
+
+        st.write(df.describe(include = 'all'))
+
+        st.write('')
+
+        st.markdown('### Please select a column name in the table ❗')
+
+        column = st.selectbox('Data in the column must be in proper text format',df.columns)
 
         tfidf = TfidfVectorizer(max_df=0.95, min_df=2, stop_words='english')
 
-        dtm = tfidf.fit_transform(df['Content'])
+        dtm = tfidf.fit_transform(df[column].dropna())
 
         nmf_model = NMF(n_components= no,random_state=42)
 
