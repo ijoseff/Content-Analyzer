@@ -15,6 +15,10 @@ def app():
     st.title("Named-Entity Recognition")
     st.header('Extracts named-entity and its frequency in the content.')
 
+    st.markdown('[Download Sample Data](https://drive.google.com/uc?export=download&id=1Wq53CzQ4THFUPQpGYF4rHo6_HhxbH42I) 📥')
+
+    st.write('')
+
     type = st.selectbox('Select Named Entity Type',['PERSON', 'NORP', 'FAC', 'ORG', 'GPE', 'LOC', 'PRODUCT', 'EVENT', 'WORK_OF_ART', 'LAW', 'LANGUAGE', 'DATE', 'TIME', 'PERCENT', 'MONEY', 'QUANTITY', 'ORDINAL', 'CARDINAL'])
     st.write('Description: ', spacy.explain(type))
 
@@ -24,9 +28,35 @@ def app():
     # Collects user input features into dataframe
     uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
     if uploaded_file is not None:
-        df = pd.read_csv(uploaded_file).dropna()
+        df = pd.read_csv(uploaded_file)
+
+        st.write('')
+
+        st.markdown('### Data Table')
+
+        st.write('')
+
+        st.dataframe(df)
+
+        st.write('')
+
+        st.markdown('### Data Description')
+
+        st.write('')
+
+        st.write(df.describe(include = 'all'))
+
+        st.write('')
+
+        st.markdown('### Please select a column name in the table ❗')
+
+        column = st.selectbox('Data in the column must be in proper text format',df.columns)
+
+        # if not column:
+        #     st.warning('Please select a column.')
+        #     st.stop()
         
-        contents = df['Content'].dropna()
+        contents = df[column].dropna()
 
         # Remove punctuation
         contents = contents.map(lambda x: re.sub('[,@#©\.!"#%\'()*+,./:;<=>?@[\\]^_`{|}~!?]','', x))
