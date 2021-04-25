@@ -11,4 +11,4 @@ def app():
     st.image(image, caption = ' ', use_column_width = True)
 
     st.title("N-Grams Frequency Counter")
-    st.header('Extract the most frequent words from your content.')
+    st.header('Extract the most frequent words from the content.')
