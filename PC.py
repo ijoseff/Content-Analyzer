@@ -13,7 +13,7 @@ def app():
     st.image(image, caption = ' ', use_column_width = True)
 
     st.title("POS Frequency Counter")
-    st.header('Extract the most frequent POS tags from your content.')
+    st.header('Extract the most frequent POS tags from the content.')
 
     st.markdown('[Download Sample Data](https://drive.google.com/uc?export=download&id=1Wq53CzQ4THFUPQpGYF4rHo6_HhxbH42I) 📥')
     
