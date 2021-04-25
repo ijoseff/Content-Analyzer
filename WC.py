@@ -27,7 +27,10 @@ def app():
     st.image(image, caption = ' ', use_column_width = True)
 
     st.title("Word Cloud Generation")
+    
     st.header('Create a collection, or cluster, of words depicted in different sizes from the content.')
+
+    st.markdown('[Download Sample Data](https://drive.google.com/uc?export=download&id=1Wq53CzQ4THFUPQpGYF4rHo6_HhxbH42I) 📥')
 
     st.write('')
 
@@ -38,7 +41,31 @@ def app():
     # Collects user input features into dataframe
     uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"], dtype={"id": str}, index_col=0)
     if uploaded_file is not None:
-        records = pd.read_csv(uploaded_file).dropna()
+        records = pd.read_csv(uploaded_file)
+
+        st.write('')
+
+        st.markdown('### Data Table')
+
+        st.write('')
+
+        st.dataframe(records)
+
+        st.write('')
+
+        st.markdown('### Data Description')
+
+        st.write('')
+
+        st.write(records.describe(include = 'all'))
+
+        st.write('')
+
+        records = records.dropna()
+
+        st.markdown('### Please select a column name in the table ❗')
+
+        column = st.selectbox('Data in the column must be in proper text format',records.columns)
 
         def get_bitrigrams(full_text, threshold=30):
             if isinstance(full_text, str):
@@ -101,7 +128,7 @@ def app():
         stop = set(stopwords.words('english'))
         translate_table = dict((ord(char), " ") for char in string.punctuation)
 
-        wordcloud = WordCloud(background_color="white", max_words = no, contour_width = 5, contour_color = 'steelblue', collocations = False, width=1000, height=500).generate(get_all_processed_texts(records["Content"], wordnet_lemmatizer, translate_table, stop))
+        wordcloud = WordCloud(background_color="white", max_words = no, contour_width = 5, contour_color = 'steelblue', collocations = False, width=1000, height=500).generate(get_all_processed_texts(records[column], wordnet_lemmatizer, translate_table, stop))
 
         st.title('Word Cloud:')
 
@@ -128,7 +155,7 @@ def app():
             return " ".join(indexed_texts)
 
         wordcloud2 = WordCloud(stopwords=STOPWORDS, background_color="white", max_words = no, contour_width = 5, contour_color = 'steelblue', collocations = False, width=1000, height=500).\
-            generate(use_ngrams_only(records["Content"], wordnet_lemmatizer, translate_table, stop))
+            generate(use_ngrams_only(records[column], wordnet_lemmatizer, translate_table, stop))
 
         st.title('Phrase Cloud:')
 
